@@ -1,4 +1,4 @@
-# sequelize model:generate --name users --attributes firstName:string,lastName:string,email:string,password:string,imageURL:string,bio:string
+sequelize model:generate --name users --attributes firstName:string,lastName:string,email:string,password:string,imageURL:string,bio:string
 
 sequelize model:generate --name friends --attributes userID:integer,friendID:integer
 
