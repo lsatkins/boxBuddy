@@ -1,7 +1,8 @@
 const express = require('express');
 const db = require('../models');
-const { render } = require('ejs');
 const router = express.Router();
+const bcrypt = require('bcryptjs'); //hash & salt pw
+const passport = require('passport')
 
 router.get('/login', async (req, res) => {
     try{
@@ -11,6 +12,19 @@ router.get('/login', async (req, res) => {
         console.log(error);
         res.render('login')
     }
+})
+
+router.post('/login', passport.authenticate('local', {
+
+    successRedirect: '/',
+    failureRedirect: '/login'
+}))
+
+router.get('/logout', (req, res) => {
+    
+    req.logout() // from passport, kill the session
+
+    res.redirect('/login')
 })
 
 module.exports = router;
