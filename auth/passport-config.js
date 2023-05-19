@@ -64,7 +64,7 @@ const init = (passport) => {
     // add the user info to the session
     // user is going to come from the record passed from the done above
     // what are we putting on the session?
-
+    
     //? info is passed from successful done(): ^record
     passport.serializeUser((user, done) => {
         console.log(`session inside serialized user`);

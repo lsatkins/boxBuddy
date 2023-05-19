@@ -2,8 +2,10 @@ const express = require('express');
 const db = require('../models');
 const { render } = require('ejs');
 const router = express.Router();
+const auth = require('../auth'); //auth/index.js
 
-router.get('/newpost', async (req, res) => {
+
+router.get('/newpost', auth, async (req, res) => {
     try{
         res.render('newpost')
     }
