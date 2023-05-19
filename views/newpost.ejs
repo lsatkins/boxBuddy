@@ -43,40 +43,50 @@
                 
                 <form action="/newpost" method="POST" class="flex flex-col justify-evenly items-start text-lg mt-4 px-1">
 
-                    <div class="mb-7 text-2xl font-semibold">Create a New Post:</div>
+                    <div class="mb-3 text-xl font-semibold">Create a New Post:</div>
           
-                    <div class="mb-5">
+                    <div class="mb-1 flex flex-col">
                       <label for="exercise" class="form-label">Exercise:</label>
                       <input type="text" class="form-control border" id="exercise" name="exercise">
                     </div>
-                    <div class="mb-5">
+                    <div class="mb-1 flex flex-col">
                       <label for="sets" class="form-label">Sets:</label>
                       <input type="text" class="form-control border" id="sets" name="sets">
                     </div>
-                    <div class="mb-5">
+                    <div class="mb-1 flex flex-col">
                       <label for="reps" class="form-label">Reps:</label>
                       <input type="text" class="form-control border" id="reps" name="reps">
                     </div>
-                    <div class="mb-5">
+                    <div class="mb-1 flex flex-col">
                       <label for="weight" class="form-label">Weight:</label>
                       <input type="text" class="form-control border" id="weight" name="weight">
                     </div>
-                    <div class="mb-5">
-                      <label for="time" class="form-label">Time:</label>
-                      <input type="text" class="form-control border" id="time" name="time">
+                    <div class="mb-1 flex flex-col">
+                      <label class="form-label">Time:</label>
+                      <input type="text" placeholder="minutes" class="form-control border" id="minutes" name="minutes">
+                      <input type="text" placeholder="seconds" class="form-control border" id="seconds" name="seconds">
                     </div>
-                    <div class="mb-5">
-                      <label for="distance" class="form-label">Distance:</label>
+                    <label for="distance" class="form-label">Distance:</label>
+                    <div class="mb-1 flex flex-row">
                       <input type="text" class="form-control border" id="distance" name="distance">
+                      <select class="form-select w-15 border ml-2" name="measurement">
+                        <option selected>Type</option>
+                          <option value="">Miles</option>
+                          <option value="">Meters</option>
+                      </select>
                     </div>
-                    <div class="mb-7">
+                    <div class="mb-1 flex flex-col">
+                      <label for="calories" class="form-label">Calories:</label>
+                      <input type="text" class="form-control border" id="calories" name="calories">
+                    </div>
+                    <div class="mb-3">
                       <label for="notes" class="form-label">Notes:</label>
-                      <textarea type="text" class="form-control border h-24 w-96" id="notes" name="notes"></textarea>
+                      <textarea type="text" class="form-control border h-20 w-96" id="notes" name="notes"></textarea>
                     </div>                     
-                    <div class="mb-7">
+                    <!-- <div class="mb-3">
                       <label for="publishDate" class="form-label">Post Time:</label>
                       <input type="datetime-local" class="form-control border" id="publishDate" name="publishDate">
-                    </div>                        
+                    </div>                         -->
                     <button type="submit" class="bg-black hover:brand-red2 text-white font-bold py-2 px-4 rounded mx-auto">Create New Post</button>
                 </form>
 
