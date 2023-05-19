@@ -2,8 +2,8 @@ const express = require('express');
 const app = express();
 const helmet = require('helmet');
 const cookieSession = require('cookie-session');
-const passport = require('passport');
-require('./auth/passport-config')(passport)
+// const passport = require('passport');
+// require('./auth/passport-config')(passport)
 
 const port = 3000;
 
@@ -20,12 +20,13 @@ app.use(cookieSession({
     maxAge: null
 }))
 
-app.use(passport.initialize());
+// app.use(passport.initialize());
 
-app.use(passport.session())
+// app.use(passport.session())
 
 //routes 
 app.use(require('./routes/index.js'))
+app.use(require('./routes/profile.js'))
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
