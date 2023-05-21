@@ -7,6 +7,7 @@
     <title>Box Buddy</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="icon" href="/images/icon-black.png">
+    <link rel="stylesheet" href="/css/newPost.css">
 
     <style>
         :root {
@@ -48,6 +49,15 @@
                     <div class="mb-1 flex flex-col">
                       <label for="exercise" class="form-label">Exercise:</label>
                       <input type="text" class="form-control border" id="exercise" name="exercise">
+                      <input name="exerciseID" type="hidden" value="NULL" class="idHolder"></input>
+                      <ol style="display:none" id="list">
+                        <% exercises.forEach(exercise => { %>
+
+                          <li class="exercises" style="display: none" id="<%= exercise.id %>"><%= exercise.name %></li>
+                         
+                        <% }) %>
+
+                      </ol>
                     </div>
                     <div class="mb-1 flex flex-col">
                       <label for="sets" class="form-label">Sets:</label>
@@ -71,8 +81,8 @@
                       <input type="text" class="form-control border" id="distance" name="distance">
                       <select class="form-select w-15 border ml-2" name="measurement">
                         <option selected>Type</option>
-                          <option value="">Miles</option>
-                          <option value="">Meters</option>
+                          <option value="Miles">Miles</option>
+                          <option value="Meters">Meters</option>
                       </select>
                     </div>
                     <div class="mb-1 flex flex-col">
@@ -113,6 +123,8 @@
 
 
     </div>
+
+    <script src="/js/newPostClient.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,17 @@
+:root {
+    --color-custom: rgb(238, 62, 56);
+    --color-custom2: rgb(238, 62, 56, 0.9);
+  }
+ 
+.exercises{
+   display: list-item;    
+  }
+
+.exercises:hover{
+    
+}
+
+.highlight{
+    background-color: var(--color-custom);
+    color: white;
+}
