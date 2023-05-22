@@ -17,7 +17,7 @@ router.get('/newpost', auth, async (req, res) => {
             obj["id"] = exercise.dataValues.id;
             obj["name"] = exercise.dataValues.name;
             arrOfObjs.push(obj);
-    })
+        })
 
         // console.log(arrOfObjs);        
         res.render('newpost', {
