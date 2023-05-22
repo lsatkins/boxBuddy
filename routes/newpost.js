@@ -7,7 +7,22 @@ const auth = require('../auth'); //auth/index.js
 
 router.get('/newpost', auth, async (req, res) => {
     try{
-        res.render('newpost')
+        let exerciseNames = await db.exercises.findAll({attributes: ['id','name']});
+        
+        let arrOfObjs = [];
+        exerciseNames.forEach(exercise => {
+
+            let obj = {};
+
+            obj["id"] = exercise.dataValues.id;
+            obj["name"] = exercise.dataValues.name;
+            arrOfObjs.push(obj);
+    })
+
+        console.log(arrOfObjs);        
+        res.render('newpost', {
+            exercises: arrOfObjs
+        })
     }
     catch (error){
         console.log(error);
@@ -15,45 +30,27 @@ router.get('/newpost', auth, async (req, res) => {
     }
 })
 
-router.post('/newpost', auth, async (req,res) => {
+
+router.post('/newpost', auth, async (req, res) => {
     try{
-        // info scraped from header:
-        let { exercise, sets, reps, weight, minutes, seconds, distance, measurement, calories, notes } = req.body;
+        let userID = req.session.passport.user;
+        let {exerciseID, sets, reps, weight, minutes, seconds, distance, measurement, calories, notes} = req.body;
 
-        // find or create the exercise
-        let [exerciseRecord, created] = await db.exercises.findOrCreate({
-            where: { name: exercise },
-            defaults: {
-                // if not exist, these properties will be used for creating new record
-                type: 'Default Type',
-                muscle: 'Default Muscle',
-                equipment: 'Default Equipment',
-                instructions: 'Default Instructions'
-            }
-        });
+        sets = parseInt(sets);
+        reps = parseInt(reps);
+        weight = parseInt(weight);
 
-        // create new record in our database
-        let newPost = await db.posts.create({
-            exerciseID: exerciseRecord.id,
-            sets,
-            reps,
-            weight,
-            userID: req.session.passport.user,
-            minutes,
-            seconds,
-            distance,
-            measurement,
-            calories,
-            notes
-        })
+        console.log(userID, 'userID');
+        console.log(req.body);
 
-        res.redirect('/')
+        await db.posts.create({userID, exerciseID, sets, reps, weight, minutes, seconds, distance, measurement, calories, notes});
+
+        res.redirect('/');
     }
-    catch(err){
-        console.log(err);
-        res.render('newpost', {
-            error: "failure creating a post"
-        })
+    catch (error){
+        console.log(error);
+        res.redirect('/newpost')
+
     }
 })
 

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Buddy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="/images/icon-black.png">
+    <link rel="stylesheet" href="/css/exercises.css">
+
+    <style>
+        :root {
+          --color-custom: rgb(238, 62, 56);
+          --color-custom2: rgb(238, 62, 56, 0.9);
+        }
+        .brand-red {
+          background-color: var(--color-custom);
+          /* Additional styles for the custom element */
+        }
+        .custom-red {
+          border-color: var(--color-custom2);
+          /* Additional styles for the custom element */
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="flex flex-col h-screen bg-white overflow-auto"> 
+
+        <!-- Navbar -->
+        <%- include('./partials/navbar') %>
+    
+        <!-- Main content -->
+
+        <div class="searchContainer">
+        
+            <label for="exercise">Exercise</label>
+            <input type="text" name="exercise" id="exercise">
+
+        </div>
+    
+        <!-- Footer -->
+        <%- include('./partials/footer') %>
+    
+
+
+
+    </div>
+
+    <script src="/js/exercisesClient.js"></script>
+
+</body>
+</html>

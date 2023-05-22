@@ -1,0 +1,85 @@
+// Code used to get exercise data from API into our database
+
+
+const apiUrlPrefix = `https://api.api-ninjas.com/v1/exercises?offset=`;
+const apiKey = 'PRm4DCcsX6csrmpSuqq7kQ==7mA4R3zoQLiXGAiw';
+
+let getExercises = async (num) => {
+    // console.log('hello1');
+
+    const apiUrl = apiUrlPrefix + num;
+    const apiKey = 'PRm4DCcsX6csrmpSuqq7kQ==7mA4R3zoQLiXGAiw';
+
+    let apiResults = await fetch(apiUrl, {
+        headers: {
+            'X-Api-Key': apiKey
+          }
+    })
+      .then(response => {return response.json()})
+      .catch(error => {
+        console.error('Error fetching data from the API:', error);
+      });
+
+      return apiResults;
+}
+// getExercises(10);
+let getAllExercises = async (num = 0) => {
+
+    // if(num < 9){
+
+        // console.log('hello');
+        const results = await getExercises(num);
+
+        if (results.length>0){
+            return results.concat(await getAllExercises(num+10));
+        }
+        else{
+            return results;
+        }
+
+    // }
+        
+    
+
+    
+
+}
+
+let getList = async() =>{
+    const entireList=await getAllExercises();
+
+    for(let i = 0; i < entireList.length -1; i++){
+        
+        let curr = entireList[i];
+
+        if(curr){
+
+            // console.log(curr);
+            let name = curr.name;
+            let type = curr.type;
+            let muscle = curr.muscle;
+            let equipment = curr.equipment;
+            let instructions = curr.instructions;
+            console.log(name, type, muscle);
+
+            // try {
+
+                await db.exercises.create({name, type, muscle, equipment, instructions});
+                
+            // } catch (error) {
+                
+            // }
+            // console.log(entireList[i].name);
+
+        }
+        
+    }
+
+    
+
+    // entireList.forEach(result => {
+    //     console.log(result[name]);
+    //   })
+    // console.log(entireList);
+}
+getList();

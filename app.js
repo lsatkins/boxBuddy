@@ -30,6 +30,7 @@ app.use(require('./routes/profile.js'))
 app.use(require('./routes/newpost.js'))
 app.use(require('./routes/login.js'))
 app.use(require('./routes/registration.js'))
+app.use(require('./routes/exercises.js'))
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
