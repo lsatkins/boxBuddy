@@ -28,7 +28,8 @@ module.exports = (sequelize, DataTypes) => {
     seconds: DataTypes.INTEGER,
     distance: DataTypes.INTEGER,
     calories: DataTypes.INTEGER,
-    notes: DataTypes.TEXT
+    notes: DataTypes.TEXT,
+    measurement: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'posts',
