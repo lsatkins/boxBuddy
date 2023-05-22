@@ -30,6 +30,7 @@ router.get('/newpost', auth, async (req, res) => {
     }
 })
 
+
 router.post('/newpost', auth, async (req, res) => {
     try{
         let userID = req.session.passport.user;
@@ -49,6 +50,7 @@ router.post('/newpost', auth, async (req, res) => {
     catch (error){
         console.log(error);
         res.redirect('/newpost')
+
     }
 })
 
