@@ -19,7 +19,7 @@ router.get('/newpost', auth, async (req, res) => {
             arrOfObjs.push(obj);
     })
 
-        console.log(arrOfObjs);        
+        // console.log(arrOfObjs);        
         res.render('newpost', {
             exercises: arrOfObjs
         })
@@ -36,12 +36,43 @@ router.post('/newpost', auth, async (req, res) => {
         let userID = req.session.passport.user;
         let {exerciseID, sets, reps, weight, minutes, seconds, distance, measurement, calories, notes} = req.body;
 
-        sets = parseInt(sets);
-        reps = parseInt(reps);
-        weight = parseInt(weight);
+        // sets = parseInt(sets);
+        // reps = parseInt(reps);
+        // weight = parseInt(weight);
+        // minutes = parseInt(minutes);
+        // seconds = parseInt(seconds);
+        // distance = parseInt(distance);
+        // calories = parseInt(calories);
 
         console.log(userID, 'userID');
-        console.log(req.body);
+        // console.log(req.body);
+
+        if(sets == ''){
+            sets = null;
+        }
+        if(reps == ''){
+            reps = null;
+        }
+        if(weight == ''){
+            weight = null;
+        }
+        if(minutes == ''){
+            minutes = null;
+        }
+        if(seconds == ''){
+            seconds = null;
+        }
+        if(distance == ''){
+            distance = null;
+        }
+        if(measurement == '' || measurement == 'Type'){
+            measurement = null;
+        }        
+        if(calories == ''){
+            calories = null;
+        }
+
+        console.log(exerciseID, sets, reps, weight, minutes, seconds, distance, measurement, calories, notes);
 
         await db.posts.create({userID, exerciseID, sets, reps, weight, minutes, seconds, distance, measurement, calories, notes});
 
