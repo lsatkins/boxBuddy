@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   friends.init({
     userID: DataTypes.INTEGER,
-    friendID: DataTypes.INTEGER
+    friendID: DataTypes.INTEGER,
+    isApproved: DataTypes.BOOLEAN
   }, {
     sequelize,
     modelName: 'friends',
