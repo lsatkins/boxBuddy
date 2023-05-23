@@ -4,7 +4,7 @@ const { render } = require('ejs');
 const router = express.Router();
 const auth = require('../auth'); //auth/index.js
 const cloudinary = require('cloudinary').v2;
-
+require('dotenv').config();
 
 function formatDate(dateString) {
     const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
@@ -15,6 +15,8 @@ function formatDate(dateString) {
 router.get('/', auth,  async (req, res) => {
 
     try{
+
+        const user = await db.users.findByPk(req.user.id);
         let users = await db.users.findAll();
         let usersArr = [];
         users.forEach(user => {
@@ -55,7 +57,7 @@ router.get('/', auth,  async (req, res) => {
                 {
                     model: db.users,
                     required: true,
-                    attributes: ['firstName', 'lastName']
+                    attributes: ['firstName', 'lastName', 'imageURL']
                 },
                 {
                     model: db.exercises,
@@ -67,6 +69,7 @@ router.get('/', auth,  async (req, res) => {
         });
 
         res.render('index', {
+            user,
             posts,
             comments: commentsArr,
             users: usersArr,
