@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Box Buddy</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="icon" href="/images/icon-black.png">
+
+    <style>
+        :root {
+          --color-custom: rgb(238, 62, 56);
+          --color-custom2: rgb(238, 62, 56, 0.9);
+        }
+        .brand-red {
+          background-color: var(--color-custom);
+          /* Additional styles for the custom element */
+        }
+        .custom-red {
+          border-color: var(--color-custom2);
+          /* Additional styles for the custom element */
+        }
+    </style>
+
+</head>
+<body>
+
+    <div class="flex flex-col h-screen bg-white overflow-auto"> 
+
+        <!-- Navbar -->
+        <%- include('./partials/navbar') %>
+    
+        <!-- Main content -->
+        <div class="flex flex-row">
+            <div class="flex flex-col mb-14">
+
+                <!-- Notification -->
+                <div class="border-b-2 border-black mt-1 pl-2 w-screen">
+                    <div class="flex flex-row items-center pt-2 pb-2">
+                        <img id="profilePic" class="w-11 h-11 rounded-full object-cover object-center" src="<%= user.imageURL ? user.imageURL : '/images/person-icon.png' %>">
+                        <div class="pl-2 justify-between">
+                            <p class="text-xl font-semibold"><%= user.firstName %> <%= user.lastName %> </p> 
+                            <p class="text-lg">Notifications</p> 
+                        </div>
+                    </div>
+                </div>
+
+                    <!-- Comments -->
+                    <% comments.forEach(comment => { %>
+                        <div class="flex flex-row pb-1 pl-1 border-b-2 border-black mt-4 text-lg items-center justify-start">
+                        Comment: <%= comment.description %> - <%= comment.user.firstName %> <%= comment.user.lastName %> 
+                        </div>
+                    <% }) %>
+                    <!-- End Comments -->
+  
+
+                    <!-- Friend Requests -->
+                    <% friendRequests.forEach(request => { %>
+                        <div class="flex flex-row pb-1 pl-1 border-b-2 border-black mt-4 text-lg items-center justify-start">
+                        Friend Request: <%= request.firstName %> <%= request.lastName %>
+                        <button id="<%= request.id %>" class="accept-button ml-2 bg-black rounded-md text-white px-1">Accept</button>
+                        <button id="<%= request.id %>" class="decline-button ml-1 brand-red rounded-md text-white px-1">Decline</button>
+                        </div>
+                    <% }) %>
+                    <!-- End Friend Requests -->
+                    
+                    <!-- Friends -->
+                    <% friends.forEach(friend => { %>
+                        <div class="flex flex-row pb-1 pl-1 border-b-2 border-black mt-4 text-lg items-center justify-start">
+                        You have accepted <%= friend.firstName %> <%= friend.lastName %> as your friend.
+                        </div>
+                    <% }) %>
+                    <!-- End Friends -->
+  
+                    <!-- Likes -->
+                    <% likes.forEach(like => { %>
+                    <div class="flex flex-row pb-1 pl-1 border-b-2 border-black mt-4 text-lg items-center justify-start">
+                        <%= likes.userID %> : <%= likes.postID %>
+                    </div>
+                    <% }) %>
+                    <!-- End Likes -->
+               
+                <!-- End Notification -->
+                    
+
+            </div>
+
+        </div>
+    
+        <!-- Footer -->
+        <%- include('./partials/footer') %>
+    
+
+
+
+    </div>
+
+    <script src="/js/friendRequests.js"></script>
+
+</body>
+</html>

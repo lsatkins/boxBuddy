@@ -42,7 +42,8 @@ router.get('/profile', auth, async (req, res) => {
                     required: true,
                     attributes: ['name']
                 }
-            ]
+            ],
+            order: [['createdAt', 'DESC']]
         })
 
         res.render('profile', {
