@@ -38,12 +38,12 @@
                 <% posts.forEach(post => { %>
 
                     <!-- Post -->
-                    <div id="post.id" class="border-2 rounded-md custom-red my-1 pl-2 w-screen">
+                    <div id="<%= post.id %> " class="border-2 rounded-md custom-red my-1 pl-2 w-screen">
                         <div class="flex flex-row items-center pt-2 pb-2">
                             <img class="w-8" src="/images/person-icon.png">
                             <div class="pl-2 justify-between">
                                 <p class="text-lg font-semibold"><%= post.user.firstName %> <%= post.user.lastName %> </p> 
-                                <p class="text-xs"><%= post.createdAt %> </p> 
+                                <p class="text-xs"><%= formatDate(post.createdAt) %> </p> 
                             </div>
                         </div>
                         <p class="pb-2 font-semibold"><%= post.exercise.name %> </p>

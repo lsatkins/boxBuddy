@@ -3,7 +3,14 @@ const db = require('../models');
 const { render } = require('ejs');
 const router = express.Router();
 const auth = require('../auth'); //auth/index.js
+const cloudinary = require('cloudinary').v2;
 
+
+function formatDate(dateString) {
+    const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
+    const date = new Date(dateString);
+    return date.toLocaleString('en-US', options);
+}
 
 router.get('/', auth,  async (req, res) => {
 
@@ -21,11 +28,13 @@ router.get('/', auth,  async (req, res) => {
                     required: true,
                     attributes: ['name']
                 }
-            ]
+            ],
+            order: [['createdAt', 'DESC']]
         });
 
         res.render('index', {
-            posts
+            posts,
+            formatDate
         })
     }
     catch (error){
