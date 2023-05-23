@@ -4,6 +4,7 @@ const helmet = require('helmet');
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 require('./auth/passport-config')(passport)
+const cloudinary = require('cloudinary').v2;
 
 const port = 3000;
 

@@ -35,46 +35,59 @@
         <!-- Navbar -->
         <%- include('./partials/navbar') %>
 
-
         <!-- Main content -->
         <div class="flex flex-row">
 
             <div class="flex flex-col mb-14">
 
-            <!-- Post -->
+            <!-- Profile -->
             <div id="post.id" class="border-b-2 border-black my-1 pl-2 w-screen">
-                <div class="flex flex-row items-center pt-2 pb-2">
-                    <img class="w-10" src="/images/person-icon.png">
+                <div class="flex flex-row items-center pt-2 pb-2 relative">
+                    <img id="profilePic" class="w-10" src="/images/person-icon.png">
                     <div class="pl-2 justify-between flex-row">
-                        <p class="text-xl font-semibold">Ethan Lehman</p> 
+                        <p class="text-xl font-semibold"><%= user.firstName %> <%= user.lastName %>  </p> 
                     </div>
-                    <button class="brand-red2 rounded-md p-1 text-white font-semibold fixed right-0 mr-2 mt-2">Edit Profile</button>
+                    <button class="edit-button brand-red2 rounded-md p-1 text-white font-semibold sticky ml-2 text-sm px-2">Edit Profile</button>
+                    <button class="save-button bg-black rounded-md p-1 text-white font-semibold sticky ml-2 text-sm px-2" style="display: none;">Save</button>
+                    <button class="cancel-button brand-red rounded-md p-1 text-white font-semibold sticky ml-2 text-sm px-2" style="display: none;">Cancel</button>
                 </div>
-                <p class="pb-2 text-lg">This is my bio.</p>
+                <p class="userBio pb-2 text-lg"><%= user.bio %> </p>
                 <div class="flex flex-col pb-3">
-                    <p class="pb-2 text-sm">Joined May 2023</p>
-                    <p class="pb-2 text-sm">1 Friends</p> 
+                    <p class="pb-2 text-sm">Joined <%= formatDate(user.createdAt) %> </p>
+                    <p class="pb-2 text-sm">1 Friend</p> 
                 </div>
             </div>
-            <!-- End Post -->
+            <!-- End Profile -->
+
+
+            <!-- --------------------------------------------------- -->
+
+
             <!-- Post -->
-            <div id="post.id" class="border-2 rounded-md custom-red my-1 pl-2 w-screen">
-                <div class="flex flex-row items-center pt-2 pb-2">
-                    <img class="w-8" src="/images/person-icon.png">
-                    <div class="pl-2 justify-between">
-                        <p class="text-lg font-semibold">Ethan Lehman</p> 
-                        <p class="text-xs">05/18/23 9:00PM</p> 
+            <% posts.forEach(post => { %>
+                <div id="<%= post.id %> " class="border-2 rounded-md custom-red my-1 pl-2 w-screen">
+                    <div class="flex flex-row items-center pt-2 pb-2">
+                        <img class="w-8" src="/images/person-icon.png">
+                        <div class="pl-2 justify-between">
+                            <p class="text-lg font-semibold"><%= post.user.firstName %> <%= post.user.lastName %> </p> 
+                            <p class="text-xs"><%= formatDate2(post.createdAt) %> </p> 
+                        </div>
+                    </div>
+                    <p class="pb-2 font-semibold"><%= post.exercise.name %> </p>
+                    <% if (post.sets && post.reps && post.weight) { %>
+                        <p class="pb-2 weights"><%= post.sets %> Sets x <%= post.reps %> Reps | <%= post.weight %>lbs </p>
+                    <% } %>
+                    <% if (post.minutes && post.seconds && post.distance && post.measurement) { %>
+                        <p class="pb-2 cardio"><%= post.minutes %> mins + <%= post.seconds %> secs | <%= post.distance %> <%= post.measurement %> </p>
+                    <% } %>
+                    <p class="pb-3"><%= post.notes %> </p>
+                    <div class="flex flex-row pb-3 pl-1">
+                        <img class="w-6" src="/images/heart-icon.png">
+                        <img class="w-6 ml-4" src="/images/comment-icon.png">
                     </div>
                 </div>
-                <p class="pb-2 font-semibold">Back Squat</p>
-                <p class="pb-2">1 Set x 1 Rep | 505lb</p>
-                <p class="pb-3">Big PR Today!!!</p>
-                <div class="flex flex-row pb-3 pl-1">
-                    <img class="w-6" src="/images/heart-icon.png">
-                    <img class="w-6 ml-4" src="/images/comment-icon.png">
-                </div>
-            </div>
-            <!-- End Post -->
+                <% }) %>
+                <!-- End Post -->
 
             </div>
 
@@ -87,6 +100,10 @@
 
 
     </div>
+
+
+    <script src="/js/profileClient.js">
+    </script>
 
 </body>
 </html>
