@@ -15,7 +15,41 @@ function formatDate(dateString) {
 router.get('/', auth,  async (req, res) => {
 
     try{
+        let users = await db.users.findAll();
+        let usersArr = [];
+        users.forEach(user => {
 
+            let obj = {};
+            obj["id"] = user.dataValues.id;
+            obj["firstName"] = user.dataValues.firstName;
+            obj["lastName"] = user.dataValues.lastName;
+            obj["createdAt"] = user.dataValues.createdAt;
+            usersArr.push(obj)
+
+        })
+
+        let findUser = (usersArr, post) => {
+
+            usersArr.forEach(user => {
+
+                // if()
+
+            })
+
+        }
+        let comments = await db.comments.findAll();
+        let commentsArr = [];
+        comments.forEach(comment => {
+
+            let obj = {};
+            obj["id"] = comment.dataValues.id;
+            obj["postID"] = comment.dataValues.postID;
+            obj["userID"] = comment.dataValues.userID;
+            obj["description"] = comment.dataValues.description;
+            commentsArr.push(obj)
+
+        })
+        console.log(commentsArr);
         let posts = await db.posts.findAll({
             include: [
                 {
@@ -34,6 +68,8 @@ router.get('/', auth,  async (req, res) => {
 
         res.render('index', {
             posts,
+            comments: commentsArr,
+            users: usersArr,
             formatDate
         })
     }
