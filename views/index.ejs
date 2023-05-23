@@ -70,12 +70,14 @@
                         <p><%= commentNum %></p>
                     </div>
                     <div class="flex flex-row pb-1 pl-1">
-                        <div class="flex flex-col pb-1 pl-1">
+                        <div class="flex flex-row pb-1 pl-1">
                             <% let count = 0 %>
                             <% let length = 0 %> 
                             <% comments.forEach(comment => { %>
                               <% if (comment.postID === post.id && count < 1) { %>
-                                <div><%= comment.description %></div>
+                                <% let user = findUser(users, comment) %> 
+                                <div class="font-semibold pr-2"><%= user.firstName %> <%= user.lastName %></div>
+                                <div class="pr-2"><%= comment.description %></div>
                                 <% count++ %>
                                 <% length++ %>  
                               <% } else if (comment.postID === post.id){ %>
