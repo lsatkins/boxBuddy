@@ -5,6 +5,7 @@ const cookieSession = require('cookie-session');
 const passport = require('passport');
 require('./auth/passport-config')(passport)
 const cloudinary = require('cloudinary').v2;
+require('dotenv').config();
 
 const port = 3000;
 
@@ -24,6 +25,15 @@ app.use(cookieSession({
 app.use(passport.initialize());
 
 app.use(passport.session())
+
+app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+        'img-src': ["'self'", "data:", "res.cloudinary.com"],
+      },
+    })
+);  
 
 //routes 
 app.use(require('./routes/index.js'))

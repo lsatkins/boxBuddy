@@ -37,29 +37,30 @@
 
                 <% posts.forEach(post => { %>
 
-                    <!-- Post -->
-                    <div id="<%= post.id %> " class="border-2 rounded-md custom-red my-1 pl-2 w-screen">
-                        <div class="flex flex-row items-center pt-2 pb-2">
-                            <img class="w-8" src="/images/person-icon.png">
-                            <div class="pl-2 justify-between">
-                                <p class="text-lg font-semibold"><%= post.user.firstName %> <%= post.user.lastName %> </p> 
-                                <p class="text-xs"><%= formatDate(post.createdAt) %> </p> 
-                            </div>
-                        </div>
-                        <p class="pb-2 font-semibold"><%= post.exercise.name %> </p>
-                        <% if (post.sets && post.reps && post.weight) { %>
-                            <p class="pb-2 weights"><%= post.sets %> Sets x <%= post.reps %> Reps | <%= post.weight %>lbs </p>
-                        <% } %>
-                        <% if (post.minutes && post.seconds && post.distance && post.measurement) { %>
-                            <p class="pb-2 cardio"><%= post.minutes %> mins + <%= post.seconds %> secs | <%= post.distance %> <%= post.measurement %> </p>
-                        <% } %>
-                        <p class="pb-3"><%= post.notes %> </p>
-                        <div class="flex flex-row pb-3 pl-1">
-                            <img class="w-6" src="/images/heart-icon.png">
-                            <img class="w-6 ml-4" src="/images/comment-icon.png">
+                <!-- Post -->
+                <div id="<%= post.id %> " class="border-2 rounded-md custom-red my-1 pl-2 w-screen">
+                    <div class="flex flex-row items-center pt-2 pb-2">
+                        <img id="profilePic" class="w-10 rounded-full" src="<%= post.user.imageURL ? post.user.imageURL : '/images/person-icon.png' %>">
+                        <div class="pl-2 justify-between">
+                            <p class="text-lg font-semibold"><%= post.user.firstName %> <%= post.user.lastName %> </p> 
+                            <p class="text-xs"><%= formatDate(post.createdAt) %> </p> 
                         </div>
                     </div>
-                    <!-- End Post -->
+                    <p class="pb-2 font-semibold"><%= post.exercise.name %> </p>
+                    <% if (post.sets && post.reps && post.weight) { %>
+                        <p class="pb-2 weights"><%= post.sets %> Sets x <%= post.reps %> Reps | <%= post.weight %>lbs </p>
+                    <% } %>
+                    <% if (post.minutes && post.seconds && post.distance && post.measurement) { %>
+                        <p class="pb-2 cardio"><%= post.minutes %> mins + <%= post.seconds %> secs | <%= post.distance %> <%= post.measurement %> </p>
+                    <% } %>
+                    <p class="pb-3"><%= post.notes %> </p>
+                    <div class="flex flex-row pb-3 pl-1">
+                        <img class="w-6" src="/images/heart-icon.png">
+                        <img class="w-6 ml-4" src="/images/comment-icon.png">
+                    </div>
+                </div>
+                <!-- End Post -->
+
                     
                     <% }) %>
                     

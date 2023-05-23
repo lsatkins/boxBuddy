@@ -4,6 +4,15 @@ const { render } = require('ejs');
 const router = express.Router();
 const auth = require('../auth'); //auth/index.js
 const cloudinary = require('cloudinary').v2;
+const multer  = require('multer');
+const upload = multer({ dest: 'uploads/' });
+
+require('dotenv').config();
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 function formatDate(dateString) {
     const options = { month: 'long', day: 'numeric', year: 'numeric' };
@@ -55,6 +64,18 @@ router.post('/profile/edit', async (req, res) => {
     try {
         await db.users.update({ bio: bio }, { where: { id } }); 
         res.sendStatus(200);
+    } catch (error) {
+        console.error(error);
+        res.sendStatus(500);
+    }
+});
+
+router.post('/profile/picture', upload.single('imageURL'), async (req, res) => {
+    try {
+        const result = await cloudinary.uploader.upload(req.file.path);
+        const id = req.session.passport.user;
+        await db.users.update({ imageURL: result.secure_url }, { where: { id } });
+        res.send(result.secure_url);
     } catch (error) {
         console.error(error);
         res.sendStatus(500);
