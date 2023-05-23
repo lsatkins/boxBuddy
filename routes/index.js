@@ -30,15 +30,13 @@ router.get('/', auth,  async (req, res) => {
 
         })
 
-        let findUser = (usersArr, post) => {
+        let findUser = (users, comment) => {
 
-            usersArr.forEach(user => {
+            //had to use .find() because forEach doesn't return anything
+            return users.find(user => user.id === comment.userID);
+          };
 
-                // if()
 
-            })
-
-        }
         let comments = await db.comments.findAll();
         let commentsArr = [];
         comments.forEach(comment => {
@@ -48,6 +46,7 @@ router.get('/', auth,  async (req, res) => {
             obj["postID"] = comment.dataValues.postID;
             obj["userID"] = comment.dataValues.userID;
             obj["description"] = comment.dataValues.description;
+            obj["createdAt"] = comment.dataValues.createdAt;
             commentsArr.push(obj)
 
         })
@@ -67,12 +66,13 @@ router.get('/', auth,  async (req, res) => {
             ],
             order: [['createdAt', 'DESC']]
         });
-
+        console.log('posts', posts[0]);
         res.render('index', {
             user,
             posts,
             comments: commentsArr,
             users: usersArr,
+            findUser,
             formatDate
         })
     }
