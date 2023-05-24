@@ -41,6 +41,39 @@ router.get('/profile', auth, async (req, res) => {
             return friendCounter;
         }
 
+        let users = await db.users.findAll();
+        let usersArr = [];
+        users.forEach(user => {
+
+            let obj = {};
+            obj["id"] = user.dataValues.id;
+            obj["firstName"] = user.dataValues.firstName;
+            obj["lastName"] = user.dataValues.lastName;
+            obj["createdAt"] = user.dataValues.createdAt;
+            usersArr.push(obj)
+
+        })
+
+        let findUser = (users, comment) => {
+
+            //had to use .find() because forEach doesn't return anything
+            return users.find(user => user.id === comment.userID);
+        };
+
+        let comments = await db.comments.findAll();
+        let commentsArr = [];
+        comments.forEach(comment => {
+
+            let obj = {};
+            obj["id"] = comment.dataValues.id;
+            obj["postID"] = comment.dataValues.postID;
+            obj["userID"] = comment.dataValues.userID;
+            obj["description"] = comment.dataValues.description;
+            obj["createdAt"] = comment.dataValues.createdAt;
+            commentsArr.push(obj)
+
+        })
+
         let posts = await db.posts.findAll({
             where: {userID: req.session.passport.user},
             include: [
@@ -62,9 +95,12 @@ router.get('/profile', auth, async (req, res) => {
             user,
             friends,
             posts,
+            comments: commentsArr,
+            users: usersArr,
             formatDate,
             formatDate2,
-            friendCount
+            friendCount,
+            findUser
         })
     } catch (error) {
         console.log(error);
