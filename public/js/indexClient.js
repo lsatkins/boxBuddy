@@ -1,8 +1,21 @@
 let postContainer = document.querySelector('.postContainer');
+let posts = document.getElementsByClassName('imageAndComments');
 
-let diplayPosts = async () => {
-    let 
+let displayHearts = async () => {
+
+    for(let post of posts){
+        let unliked = post.querySelector('.unliked');
+        let whiteCount = post.querySelector('.whiteCount');
+        let liked = post.querySelector('.liked');
+        let redCount = post.querySelector('.redCount');
+        
+        if(liked.id){
+            liked.style.display = 'inline-flex';
+        }
+    }
+    
 }
+displayHearts()
 
 postContainer.addEventListener('click', async (e) => {
 
@@ -50,6 +63,7 @@ postContainer.addEventListener('click', async (e) => {
         numberCount ++;
         console.log(numberCount);
         redCount.innerText = numberCount;
+        displayHearts();
 
     }
     if(e.target.className.includes('redHeart')){
@@ -94,7 +108,8 @@ postContainer.addEventListener('click', async (e) => {
         // whiteCount.style.display = 'inline';
         // redHeart.style.display = 'none';
         // redCount.style.display = 'none';
-
+        liked.removeAttribute('id');
+        displayHearts();
     }
     
 })
