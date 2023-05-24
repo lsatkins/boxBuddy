@@ -1,8 +1,9 @@
 const express = require('express');
 const db = require('../models');
 const router = express.Router();
+const auth = require('../auth'); //auth/index.js
 
-router.get('/notifications', async (req, res) => {
+router.get('/notifications', auth, async (req, res) => {
   try {
     console.log('active notifications');
 

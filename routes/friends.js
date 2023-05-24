@@ -28,6 +28,7 @@ for (const id of arrOfIDs) {
   obj["firstName"] = results.dataValues.firstName;
   obj["lastName"] = results.dataValues.lastName;
   obj["email"] = results.dataValues.email;
+  obj["imageURL"] = results.dataValues.imageURL;
   arrOfFriends.push(obj);
 
 }
@@ -40,6 +41,7 @@ for (const id of arrOfIDs) {
             obj["id"] = user.dataValues.id;
             obj["firstName"] = user.dataValues.firstName;
             obj["lastName"] = user.dataValues.lastName;
+            obj["imageURL"] = user.dataValues.imageURL;
             arrOfUsers.push(obj);
     })
         res.render('friends', {

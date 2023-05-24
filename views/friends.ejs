@@ -52,6 +52,7 @@
                         <% users.forEach(user => { %>
 
                           <li class="users" style="display: none" id="<%= user.id %>">
+                            <img id="profilePic" class="w-10 h-10 rounded-full object-cover object-center" src="<%= user.imageURL ? user.imageURL : '/images/person-icon.png' %>">
                             <div class="fullName" id="<%= user.id %>"><%= user.firstName %> <%= user.lastName %> </div>
                         </li>
                          
@@ -73,6 +74,7 @@
                         <% friends.forEach(friend => { %>
 
                           <li class="friend mb-2" id="<%= friend.id %>">
+                            <img id="profilePic" class="w-10 h-10 rounded-full object-cover object-center" src="<%= friend.imageURL ? friend.imageURL : '/images/person-icon.png' %>">
                             <div><%= friend.firstName %> <%= friend.lastName %></div>
                             <div><%= friend.email %></div>
                         </li>

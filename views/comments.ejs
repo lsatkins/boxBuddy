@@ -38,7 +38,7 @@
                 <!-- Post -->
                 <div id="<%= posts.dataValues.id %> " class="border-2 rounded-md custom-red my-1 pl-2 w-screen">
                     <div class="flex flex-row items-center pt-2 pb-2">
-                        <img id="profilePic" class="w-10 rounded-full" src="<%= posts.dataValues.user.imageURL ? posts.dataValues.user.imageURL : '/images/person-icon.png' %>">
+                        <img id="profilePic" class="w-11 h-11 rounded-full object-cover object-center" src="<%= posts.dataValues.user.imageURL ? posts.dataValues.user.imageURL : '/images/person-icon.png' %>">
                         <div class="pl-2 justify-between">
                             <p class="text-lg font-semibold"><%= posts.dataValues.user.firstName %> <%= posts.dataValues.user.lastName %> </p> 
                             <p class="text-xs"><%= formatDate(posts.dataValues.createdAt) %> </p> 
@@ -58,9 +58,9 @@
                 <!-- End Post -->
 
                     <% allComments.forEach(comment => { %>
-                        <div class="flex flex-row items-center pt-2 pb-2">
+                        <div class="flex flex-row items-center pt-2 pb-2 ml-1">
                             
-                                <img id="profilePic" class="w-10 rounded-full" src="<%= comment.user.imageURL ? comment.user.imageURL : '/images/person-icon.png' %>">
+                                <img id="profilePic" class="w-10 h-10 rounded-full object-cover object-center" src="<%= comment.user.imageURL ? comment.user.imageURL : '/images/person-icon.png' %>">
                                 <div class="pl-2 justify-between">
                                     <p class="text-lg font-semibold"><%= comment.user.firstName %> <%= comment.user.lastName %> </p> 
                                     <p class="text-xs"><%= formatDate(comment.createdAt) %> </p> 
