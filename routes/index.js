@@ -17,7 +17,20 @@ router.get('/', auth,  async (req, res) => {
     try{
 
         let id = req.session.passport.user;
+        console.log(id, 'id number');
         let userLikes = await db.likes.findAll({where:{userID: id}});
+        let userLikesArr = [];
+        userLikes.forEach(user => {
+
+            let obj = {};
+            obj["id"] = user.dataValues.id;
+            obj["userID"] = user.dataValues.userID;
+            obj["postID"] = user.dataValues.postID;
+            
+            userLikesArr.push(obj)
+
+        })
+        console.log(userLikesArr);
         const user = await db.users.findByPk(req.user.id);
         let users = await db.users.findAll();
         let usersArr = [];
@@ -86,6 +99,7 @@ router.get('/', auth,  async (req, res) => {
             users: usersArr,
             likes: likesArr,
             userLikes,
+            userLikesArr,
             findUser,
             formatDate
         })

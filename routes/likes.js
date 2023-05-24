@@ -8,26 +8,50 @@ require('dotenv').config();
 
 router.get('/likes', async (req, res) => {
 
-    // let id = req.session.passport.user;
+    let id = req.session.passport.user;
 
-    let likes = await db.likes.findAll();
+    let likes = await db.likes.findAll({where: {userID : id}});
+    console.log(likes);
 
-    res.render('index')
+    res.json(likes);
     
 })
 router.post('/likes', async (req, res) => {
+    try {
+        let userID = req.session.passport.user;
+        let { postID } = req.body;
 
-    let userID = req.session.passport.user;
-    let {postID} = req.body;
+        await db.likes.create({ userID, postID });
+        let thisLike = await db.likes.findOne({where: {userID, postID}})
 
-    await db.likes.create({userID, postID});
-    let like = await db.likes.findOne({where: {userID, postID}})
+        console.log(thisLike);
+        let thisLikeID = thisLike.dataValues.id;
+        console.log('id', thisLikeID);
 
-    console.log(like);
+        res.json({ thisLikeID });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+});
+router.delete('/likes', async (req, res) => {
+    try {
+        
+        let { id } = req.body;
 
-    res.render('index',)
-    
-})
+        let deleted = await db.likes.destroy({where: {id}});
+        
+
+        res.json({ deleted });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ success: false, error: 'Internal server error' });
+    }
+});
+
+
+
+
 
 
 

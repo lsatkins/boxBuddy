@@ -33,7 +33,7 @@
     
         <!-- Main content -->
         <div class="flex flex-row">
-            <div id="<%= id %>" class="postContainer flex flex-col mb-14">
+            <div id="<%= id %>" class="postContainer flex flex-col mb-14"> 
 
                 <% posts.forEach(post => { %>
 
@@ -54,8 +54,28 @@
                         <p class="pb-2 cardio"><%= post.minutes %> mins + <%= post.seconds %> secs | <%= post.distance %> <%= post.measurement %> </p>
                     <% } %>
                     <p class="pb-3"><%= post.notes %> </p>
-                    <div class="flex flex-row pb-3 pl-1">
-                        <div class="unliked flex flex-row">
+                    <div class="imageAndComments flex flex-row pb-3 pl-1">
+                        <div class="unLiked flex flex-row flex-nowrap" style=
+                        
+                        <% userLikesArr.forEach(like => { %>
+
+                            <% if (userLikes.length === 0) { %>
+
+                                "display: none"
+
+                            <% } else if (like.postID === post.id) { %>
+
+                                <% if (like.userID === id) { %>
+                                    "display: none"
+                                <% } %>
+                        
+                            
+                            <% } %>
+                        
+                        <% }) %>
+
+                        >
+                        
                         <img id="<%= post.id %>" class="whiteHeart w-6 mr-1" src="/images/heart-icon.png">
                         <% let likeNum = 0 %> 
                         <% likes.forEach(like => { %>
@@ -67,9 +87,34 @@
                             <% } %>
                             
                         <% }) %>
-                        <p><%= likeNum %></p>
+                        <div class="whiteCount"><%= likeNum %></div>
                         </div>
-                        <div style="display: none" class="liked flex flex-row">
+                        <div class="liked flex flex-row flex-nowrap"
+                        
+                        <% userLikesArr.forEach(like => { %>
+
+                            <% console.log(like); %> 
+                            <% console.log(like.postID === post.id); %> 
+                            <% console.log(like.userID === id); %> 
+                            <% console.log(id, like.userID, post.id, like.postID); %> 
+                            <% console.log(like.postID === post.id && like.userID === id); %> 
+                            
+
+                            <% if (like.postID === post.id && like.userID === id){ %>
+                                <% console.log('inside if statement'); %> 
+                                style="display: inline-flex"
+                                    id="<%= like.id %>"
+
+                                <% } else { %>
+
+                                    style="display: none"
+                                
+                            <% } %>
+                         
+                        <% }) %>
+                        
+                        
+                        >
                         <img id="<%= post.id %>" class="redHeart w-6 mr-1" src="/images/299063_heart_icon.png">
                         <% likeNum = 0 %> 
                         <% likes.forEach(like => { %>
@@ -81,7 +126,7 @@
                             <% } %>
                             
                         <% }) %>
-                        <p><%= likeNum %></p>
+                        <div class="redCount"><%= likeNum %></div>
                         </div>
                         <a href="/comments/<%= post.id %>"><img class="w-6 ml-4 mr-1" src="/images/comment-icon.png"></a>
                         <% let commentNum = 0 %> 
