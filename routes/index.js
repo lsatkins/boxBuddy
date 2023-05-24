@@ -16,6 +16,8 @@ router.get('/', auth,  async (req, res) => {
 
     try{
 
+        let id = req.session.passport.user;
+        let userLikes = await db.likes.findAll({where:{userID: id}});
         const user = await db.users.findByPk(req.user.id);
         let users = await db.users.findAll();
         let usersArr = [];
@@ -50,7 +52,17 @@ router.get('/', auth,  async (req, res) => {
             commentsArr.push(obj)
 
         })
-        console.log(commentsArr);
+        let likes = await db.likes.findAll();
+        let likesArr = [];
+        likes.forEach(like => {
+
+            let obj = {};
+            obj["id"] = like.dataValues.id;
+            obj["postID"] = like.dataValues.postID;
+            obj["userID"] = like.dataValues.userID;
+            likesArr.push(obj)
+
+        })
         let posts = await db.posts.findAll({
             include: [
                 {
@@ -66,12 +78,14 @@ router.get('/', auth,  async (req, res) => {
             ],
             order: [['createdAt', 'DESC']]
         });
-        console.log('posts', posts[0]);
         res.render('index', {
             user,
+            id,
             posts,
             comments: commentsArr,
             users: usersArr,
+            likes: likesArr,
+            userLikes,
             findUser,
             formatDate
         })

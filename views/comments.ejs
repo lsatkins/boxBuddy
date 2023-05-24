@@ -57,6 +57,19 @@
                 
                 <!-- End Post -->
 
+                <form action="/comments/<%= postID %>" method="POST" class="flex flex-col justify-evenly items-start text-lg mt-4 px-1">
+
+                    <div class="mb-3">
+                      <label for="description" class="form-label">Comment:</label>
+                      <textarea placeholder="Add text here..." type="text" class="form-control border h-20 w-96" id="description" name="description"></textarea>
+                    </div>                     
+                    <!-- <div class="mb-3">
+                      <label for="publishDate" class="form-label">Post Time:</label>
+                      <input type="datetime-local" class="form-control border" id="publishDate" name="publishDate">
+                    </div>                         -->
+                    <button type="submit" class="bg-black  text-white font-bold py-2 px-4 rounded mx-auto">Add Comment</button>
+                </form>
+
                     <% allComments.forEach(comment => { %>
                         <div class="flex flex-row items-center pt-2 pb-2 ml-1">
                             
