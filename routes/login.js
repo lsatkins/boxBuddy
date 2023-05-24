@@ -24,7 +24,7 @@ router.get('/logout', (req, res) => {
     
     req.logout() // from passport, kill the session
 
-    res.redirect('/login')
+    res.status(200).json({ redirectUrl: '/login' });
 })
 
 module.exports = router;

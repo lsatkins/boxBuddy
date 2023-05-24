@@ -1,4 +1,5 @@
 let editButton = document.querySelector('.edit-button');
+let logoutButton = document.querySelector('.logout-button');
 let profilePic = document.querySelector('#profilePic');
 let fileInput = document.querySelector('#fileInput');
 
@@ -16,6 +17,7 @@ editButton.addEventListener('click', (event) => {
     saveButton.style.display = 'inline';
     cancelButton.style.display = 'inline';
     editButton.style.display = 'none';
+    logoutButton.style.display = 'none';
     fileInput.style.display = 'inline';
 
     fileInput.addEventListener('change', async () => {
@@ -53,6 +55,7 @@ editButton.addEventListener('click', (event) => {
         saveButton.style.display = 'none';
         cancelButton.style.display = 'none';
         editButton.style.display = 'inline';
+        logoutButton.style.display = 'inline';
         fileInput.style.display = 'none';
     
         // Make a fetch request to update the user's bio
@@ -83,8 +86,19 @@ editButton.addEventListener('click', (event) => {
         saveButton.style.display = 'none';
         cancelButton.style.display = 'none';
         editButton.style.display = 'inline';
+        logoutButton.style.display = 'inline';
         fileInput.style.display = 'none';
     })
 
 });
 
+logoutButton.addEventListener('click', () => {
+    fetch('/logout', { method: 'GET' })
+        .then(response => response.json())
+        .then(data => {
+            window.location.href = data.redirectUrl; // Redirect to the login page
+        })
+        .catch(error => {
+            console.error('Logout error:', error);
+        });
+});
