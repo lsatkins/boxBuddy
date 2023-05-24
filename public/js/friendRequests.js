@@ -6,6 +6,8 @@ acceptButtons.forEach(button => {
     await fetch(`/friendRequests/accept/${requestId}`, { method: 'POST' });
     // Perform any additional actions after accepting the friend request
 
+    //todo: re paint vs rely on refresh
+
     // Refresh the page after successful request
     location.reload();
   });

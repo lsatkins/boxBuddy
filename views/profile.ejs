@@ -54,9 +54,12 @@
                     <button class="cancel-button brand-red rounded-md p-1 text-white font-semibold sticky ml-2 text-sm px-2" style="display: none;">Cancel</button>
                 </div>
                 <p class="userBio pb-2 text-lg"><%= user.bio %> </p>
-                <div class="flex flex-col pb-3">
-                    <p class="pb-2 text-sm">Joined <%= formatDate(user.createdAt) %> </p>
-                    <p class="pb-2 text-sm">1 Friend</p> 
+                <div class="flex flex-row justify-between">
+                    <div class="flex flex-col pb-3">
+                        <p class="pb-2 text-sm">Joined <%= formatDate(user.createdAt) %> </p> 
+                        <p class="pb-2 text-sm"><%= friendCount(friends) %>  Friends</p> 
+                    </div>
+                    <a class="flex flex-row justify-center items-end pb-5 px-2 font-medium cursor-pointer" href="/personalRecords">Personal Records <img class="w-7.5 h-9 px-1" src="/images/stats-red.png" alt="stats"></a>
                 </div>
             </div>
             <!-- End Profile -->
@@ -84,9 +87,40 @@
                     <% } %>
                     <p class="pb-3"><%= post.notes %> </p>
                     <div class="flex flex-row pb-3 pl-1">
-                        <img class="w-6" src="/images/heart-icon.png">
-                        <img class="w-6 ml-4" src="/images/comment-icon.png">
+                        <img id="<%= post.id %>" class="w-6" src="/images/heart-icon.png">
+                        <a href="/comments/<%= post.id %>"><img class="w-6 ml-4 mr-1" src="/images/comment-icon.png"></a>
+                        <% let commentNum = 0 %> 
+                        <% comments.forEach(comment => { %>
+
+                            <% if (comment.postID === post.id) { %>
+
+                                <% commentNum ++ %> 
+                             
+                            <% } %>
+                            
+                        <% }) %>
+                        <p><%= commentNum %></p>
                     </div>
+
+                    <div class="flex flex-row pb-1 pl-1">
+                        <div class="flex flex-row pb-1">
+                            <% let count = 0 %>
+                            <% let length = 0 %> 
+                            <% comments.forEach(comment => { %>
+                              <% if (comment.postID === post.id && count < 1) { %>
+                                <% let user = findUser(users, comment) %> 
+                                <div class="font-semibold pr-2"><%= user.firstName %> <%= user.lastName %></div>
+                                <div class="pr-2"><%= comment.description %></div>
+                                <% count++ %>
+                                <% length++ %>  
+                              <% } else if (comment.postID === post.id){ %>
+                                <% length++ %> 
+                              <% } %> 
+                            <% }) %>
+                          </div>
+                          
+                    </div>
+
                 </div>
                 <% }) %>
                 <!-- End Post -->

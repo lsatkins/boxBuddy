@@ -46,6 +46,7 @@ app.use(require('./routes/friends.js'))
 app.use(require('./routes/notifications.js'))
 app.use(require('./routes/comments.js'))
 app.use(require('./routes/likes.js'))
+app.use(require('./routes/personalRecords.js'))
 
 app.listen(port, () => {
     console.log(`listening on port ${port}`);
