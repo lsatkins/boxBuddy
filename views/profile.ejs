@@ -55,8 +55,8 @@
                 </div>
                 <p class="userBio pb-2 text-lg"><%= user.bio %> </p>
                 <div class="flex flex-col pb-3">
-                    <p class="pb-2 text-sm">Joined <%= formatDate(user.createdAt) %> </p>
-                    <p class="pb-2 text-sm">1 Friend</p> 
+                    <p class="pb-2 text-sm">Joined <%= formatDate(user.createdAt) %> </p> 
+                    <p class="pb-2 text-sm"><%= friendCount(friends) %>  Friends</p> 
                 </div>
             </div>
             <!-- End Profile -->

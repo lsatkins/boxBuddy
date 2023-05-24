@@ -29,6 +29,18 @@ router.get('/profile', auth, async (req, res) => {
     try {
         let user = await db.users.findByPk(req.session.passport.user);
 
+        let friends = await db.friends.findAll({
+            where: {userID: req.session.passport.user}
+        })
+
+        const friendCount = (friends) => {
+            let friendCounter = 0;
+            friends.forEach(friend => {
+                friendCounter += 1;
+            })
+            return friendCounter;
+        }
+
         let posts = await db.posts.findAll({
             where: {userID: req.session.passport.user},
             include: [
@@ -48,9 +60,11 @@ router.get('/profile', auth, async (req, res) => {
 
         res.render('profile', {
             user,
+            friends,
             posts,
             formatDate,
-            formatDate2
+            formatDate2,
+            friendCount
         })
     } catch (error) {
         console.log(error);
