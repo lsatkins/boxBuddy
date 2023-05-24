@@ -33,7 +33,7 @@
     
         <!-- Main content -->
         <div class="flex flex-row">
-            <div class="flex flex-col mb-14">
+            <div id="<%= id %>" class="postContainer flex flex-col mb-14">
 
                 <% posts.forEach(post => { %>
 
@@ -55,7 +55,34 @@
                     <% } %>
                     <p class="pb-3"><%= post.notes %> </p>
                     <div class="flex flex-row pb-3 pl-1">
-                        <img class="w-6" src="/images/heart-icon.png">
+                        <div class="unliked flex flex-row">
+                        <img id="<%= post.id %>" class="whiteHeart w-6 mr-1" src="/images/heart-icon.png">
+                        <% let likeNum = 0 %> 
+                        <% likes.forEach(like => { %>
+
+                            <% if (like.postID === post.id) { %>
+
+                                <% likeNum ++ %> 
+                             
+                            <% } %>
+                            
+                        <% }) %>
+                        <p><%= likeNum %></p>
+                        </div>
+                        <div style="display: none" class="liked flex flex-row">
+                        <img id="<%= post.id %>" class="redHeart w-6 mr-1" src="/images/299063_heart_icon.png">
+                        <% likeNum = 0 %> 
+                        <% likes.forEach(like => { %>
+
+                            <% if (like.postID === post.id) { %>
+
+                                <% likeNum ++ %> 
+                             
+                            <% } %>
+                            
+                        <% }) %>
+                        <p><%= likeNum %></p>
+                        </div>
                         <a href="/comments/<%= post.id %>"><img class="w-6 ml-4 mr-1" src="/images/comment-icon.png"></a>
                         <% let commentNum = 0 %> 
                         <% comments.forEach(comment => { %>
@@ -105,6 +132,8 @@
 
 
     </div>
+
+    <script src="/js/indexClient.js"></script>
 
 </body>
 </html>

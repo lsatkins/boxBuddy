@@ -65,6 +65,7 @@ router.get('/comments/:id', auth, async (req, res) => {
             ]
           });
         res.render('comments', {
+            postID,
             user,
             allComments,
             users: usersArr,
@@ -81,20 +82,27 @@ router.get('/comments/:id', auth, async (req, res) => {
 })
 
 
-router.post('/comments/:id', async (req, res) => {
+router.post('/comments/:id', auth, async (req, res) => {
+    
+    let postID = req.params.id
 
-    try {
-
-        let {postID} = req.params;
-    let userID = req.session.passport.user;
-    let {description} = req.body;
-
-    await db.comments.create({postID, userID, description});
-    res.redirect('/comments/:id')
+    try{
         
-    } catch (error) {
+        let userID = req.session.passport.user;
+        let {description} = req.body;
+        console.log('here');
+
+        await db.comments.create({postID, userID, description});
+
+        console.log('here1');
+
+        res.redirect(`/comments/${postID}`)
         
     }
-    
+    catch (error){
+        console.log(error);
+        res.redirect('/comments/:id')
+
+    }
 })
 module.exports = router;
