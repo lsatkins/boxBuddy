@@ -52,9 +52,9 @@
             </div>
             <% } else if (notification.type === 'like') { %>
             <!-- Like notification -->
-            <div class="flex flex-row pb-1 pl-1 border-b-2 border-black mt-4 text-lg items-center justify-start">
-                Like: <%= notification.item.userID %> : <%= notification.item.postID %>
-            </div>
+            <!-- <div class="flex flex-row pb-1 pl-1 border-b-2 border-black mt-4 text-lg items-center justify-start">
+                <%= notification.item.postID %> liked by names...
+            </div> -->
             <% } else if (notification.type === 'friendRequest') { %>
                 <% if (notification.item && !notification.item.isApproved) { %>
                     <!-- Friend request notification -->
