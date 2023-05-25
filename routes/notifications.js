@@ -94,7 +94,7 @@ router.post('/friendRequests/accept/:id', async (req, res) => {
       friendRequest.isApproved = true;
       await friendRequest.save();
 
-      res.redirect('/notifications')
+      res.sendStatus(200);
 
     } catch (error) {
       console.log(error);
@@ -105,16 +105,29 @@ router.post('/friendRequests/accept/:id', async (req, res) => {
 // Decline friend request
 router.post('/friendRequests/decline/:id', async (req, res) => {
     try {
-      const friendRequestId = req.params.id;
+      // const friendRequestId = req.params.id;
+
+      let { requestId } = req.body;
+
+      requestId = parseInt(requestId);
+
+      console.log('request ID:' + requestId);
+
+      if(requestId % 2 == 0){
+          await db.friends.destroy( {where: {id: requestId} })
+          await db.friends.destroy( {where: {id: requestId + 1} })
+      }
+      if(requestId % 2 !== 0){
+        await db.friends.destroy( {where: {id: requestId} })
+        await db.friends.destroy( {where: {id: requestId - 1} })
+      }
   
       // Find the friend request by ID
-      const friendRequest = await db.friends.findByPk(friendRequestId);
+      // const friendRequest = await db.friends.findByPk(friendRequestId);
   
-      // Update the friend request to isApproved = false
-      friendRequest.isApproved = false;
-      await friendRequest.save();
+      // await friendRequest.destroy();
   
-      res.redirect('/notifications')
+      res.sendStatus(200);
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
