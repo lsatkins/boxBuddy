@@ -99,12 +99,6 @@
                         <% } %>
                         
                         <% userLikesArr.forEach(like => { %>
-
-                            <% console.log(like); %> 
-                            <% console.log(like.postID === post.id); %> 
-                            <% console.log(like.userID === id); %> 
-                            <% console.log(id, like.userID, post.id, like.postID); %> 
-                            <% console.log(like.postID === post.id && like.userID === id); %> 
                             
 
                             <% if (like.postID === post.id && like.userID === id){ %>
