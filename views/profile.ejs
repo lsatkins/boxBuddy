@@ -87,7 +87,18 @@
                     <% } %>
                     <p class="pb-3"><%= post.notes %> </p>
                     <div class="flex flex-row pb-3 pl-1">
-                        <img id="<%= post.id %>" class="w-6" src="/images/heart-icon.png">
+                        <img id="<%= post.id %>" class="w-6 mr-1" src="/images/heart-icon.png">
+                        <% let likeNum = 0 %> 
+                        <% likes.forEach(like => { %>
+
+                            <% if (like.postID === post.id) { %>
+
+                                <% likeNum ++ %> 
+                             
+                            <% } %>
+                            
+                        <% }) %>
+                        <div class="whiteCount"><%= likeNum %></div>
                         <a href="/comments/<%= post.id %>"><img class="w-6 ml-4 mr-1" src="/images/comment-icon.png"></a>
                         <% let commentNum = 0 %> 
                         <% comments.forEach(comment => { %>

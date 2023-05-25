@@ -91,12 +91,25 @@ router.get('/profile', auth, async (req, res) => {
             order: [['createdAt', 'DESC']]
         })
 
+        let likes = await db.likes.findAll();
+        let likesArr = [];
+        likes.forEach(like => {
+
+            let obj = {};
+            obj["id"] = like.dataValues.id;
+            obj["postID"] = like.dataValues.postID;
+            obj["userID"] = like.dataValues.userID;
+            likesArr.push(obj)
+
+        })
+
         res.render('profile', {
             user,
             friends,
             posts,
             comments: commentsArr,
             users: usersArr,
+            likes: likesArr,
             formatDate,
             formatDate2,
             friendCount,
