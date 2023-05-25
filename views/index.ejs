@@ -55,6 +55,7 @@
                     <% } %>
                     <p class="pb-3"><%= post.notes %> </p>
                     <div class="imageAndComments flex flex-row pb-3 pl-1">
+
                         <div class="unLiked flex flex-row flex-nowrap" style=
                         
                         <% userLikesArr.forEach(like => { %>
@@ -90,6 +91,12 @@
                         <div class="whiteCount"><%= likeNum %></div>
                         </div>
                         <div class="liked flex flex-row flex-nowrap"
+
+                        <% if (userLikes.length === 0) { %>
+
+                            style="display: none"
+                         
+                        <% } %>
                         
                         <% userLikesArr.forEach(like => { %>
 
@@ -106,6 +113,8 @@
                                     id="<%= like.id %>"
 
                                 <% } else { %>
+
+                                    console.log('hello');
 
                                     style="display: none"
                                 
