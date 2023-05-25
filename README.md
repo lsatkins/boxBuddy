@@ -86,6 +86,6 @@ Box Buddy is in beta stage of development.<br>This was a 1 week full-stack proje
 
 ### Contributors: 
 <a href="">Hunter Atkins</a> & <a href="https://www.linkedin.com/in/ethan-lehman-444b68220/">Ethan Lehman</a><br>
-<img src="" alt="" height="137px"></img>
+<img src="public/images/simba.PNG" alt="" height="137px"></img>
 <img src="public/images/ethan-profimg.PNG" alt="" height="137px"></img>
 <br>
