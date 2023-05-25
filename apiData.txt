@@ -2,13 +2,13 @@
 
 
 const apiUrlPrefix = `https://api.api-ninjas.com/v1/exercises?offset=`;
-const apiKey = 'PRm4DCcsX6csrmpSuqq7kQ==7mA4R3zoQLiXGAiw';
+const apiKey = API_KEY;
 
 let getExercises = async (num) => {
     // console.log('hello1');
 
     const apiUrl = apiUrlPrefix + num;
-    const apiKey = 'PRm4DCcsX6csrmpSuqq7kQ==7mA4R3zoQLiXGAiw';
+    const apiKey = API_KEY;
 
     let apiResults = await fetch(apiUrl, {
         headers: {
