@@ -1,51 +1,20 @@
 # Box Buddy (Full-Stack Mobile Project)
-Box Buddy is a community-based mobile fitness application where users can build up their profiles, post workouts, track personal fitness records, and interact with friends.
+Box Buddy is a community-based mobile fitness application where users can build up their profiles, post workouts, track personal fitness records, and interact with friends. With a clean and user-friendly interface, Box Buddy fosters a fitness community, encouraging users to engage, motivate, and inspire one another on their fitness endeavors.
 <br/><br/>
 ## Live Link: 🔗
 
 Access our site at (link)
 <br/><br/>
 ## Table of Contents: 📚
-
+* [Technologies](#tech)<br/>
 * [About Box Buddy](#about)<br/>
 * [Screenshots](#screen)<br/>
-* [Technologies](#tech)<br/>
-* [Approach](#approach)<br/>
 * [Status](#status)<br/>
 * [Credits](#credits)
-<br/><br/>
-## <a id="about"></a>About Box Buddy: 
 
-### <b>Swap Page:</b>
-Hermes' swap interface allows users to select a cryptocurrency, and provides real-time conversion of the selected cryptocurrency to another cryptocurrency based on current market prices. It's main function is a swap feature that allows users to swap one cryptocurrency for another. Additionally, it has a "max" button that allows users to input the maximum amount of cryptocurrency they have available for trading. The script fetches market prices of Hermes' supported cryptocurrencies from the CoinGecko public API.
-<br>
 
 <br/><br/>
-## <a id="screen"></a>Screenshots: 📷
-
-### <b>Home:</b><br>
-<img src="public/images/screenshot-home.png" alt="home" width="200px"></img>
-
-### <b>Search Friends:</b><br>
-<img src="public/images/screenshot-search.png" alt="search friends" width="200px"></img>
-
-### <b>Create New Post:</b><br>
-<img src="" alt="trade" width="200px"></img>
-
-### <b>Notifications:</b><br>
-<img src="" alt="confirm" width="200px"></img>
-
-### <b>Profile:</b><br>
-<img src="" alt="assets" width="200px"></img>
-
-### <b>Personal Records:</b><br>
-<img src="" alt="tokens" width="200px"></img>
-
-### <b>Comments:</b><br>
-<img src="" alt="charts" width="200px"></img>
-
-<br/><br/>
-## <a id="tech"></a>Technologies: 💻
+## <a id="tech">Technologies: 💻</a>
 
 - JavaScript
 - Tailwind CSS
@@ -60,29 +29,63 @@ Hermes' swap interface allows users to select a cryptocurrency, and provides rea
 - Cloudinary
 - Multer
 - API: <a class="apiLink" href="https://api-ninjas.com/api/exercises">API-Ninjas (Exercises)</a>
-<br/><br/>
-## <a id="approach"></a>Approach: 💭
-
-<b>Hunter:</b><br>
-My approach for our front-end project was to create a website that would be useful to many people. I think that we accomplished this goal in the sense that, through the use of our app, anyone can get experience in trading crypto without the risk of losing their hard-earned assets. 
-<br>
-I wanted to make sure that our site was consistent in its styling across all pages. This was accomplished by creating an initial CSS file which contained the basic styling for the navbar and content section, which was linked to every HTML page. 
-<br>
-With a basic template for all of our HTML pages complete, we were able to split up tasks efficiently and create pull requests with minimal merge conflicts. <br><br>
-<b>Ethan:</b><br>
-As someone who is very passionate about Decentralized Finance and the future that cryptocurrencies can create, I was highly motivated by this project. Hunter and I collaborated well and partitioned tasks efficiently. This made the building process smooth, fast, and clean. <br>
-Throughout this project, my main focus was to incorporate accurate trading conversions between cryptocurrencies and price charts for each token. Beyond this, I ensured a mutual styling theme between pages with attention to small details and mobile friendliness.  Hunter and I both leveraged each other's strengths to create a beginner-friendly (fake money) and realistic cryptocurrency application. 
 
 <br/><br/>
-## <a id="status"></a>Status: 📶
+## <a id="about">About Box Buddy: </a>
+### <b>Home Page:</b><br>
+The home page of Box Buddy is the central hub for fitness enthusiasts to connect and share their exercise journeys. The page showcases a collection of user posts, each displaying exercise details such as name, sets, reps, weight, duration, distance, and notes. Users can like posts, view and add comments, and see the number of likes and comments for each post. 
+
+### <b>Search Friends:</b><br>
+The search friends page of Box Buddy allows users to expand their fitness network by finding and adding new friends within the community. The page features a user-friendly search form where users can enter the name of the person they want to add as a friend. Upon submitting the form, Box Buddy searches for matching users and displays the results in a list format, including their profile pictures, full names, and email addresses. Users can then select and add friends from the list, facilitating connections and fostering a supportive fitness community.
+
+### <b>Create New Posts:</b><br>
+The create new posts page of Box Buddy allows users to share their workout accomplishments and experiences with the community. The page features a user-friendly form where users can input details about their exercise, such as the exercise name, sets, reps, weight, time, distance, calories burned, and additional notes. Users can enter the exercise details and submit the form to create a new post that will be visible to other users in the Box Buddy community.
+
+### <b>Notifications Page:</b><br>
+The notifications page in Box Buddy keeps users updated on various activities and interactions within the app's community. Users receive notifications related to comments, likes, friend requests, and accepted friend requests. The page displays a user's profile picture, name, and a title indicating "Notifications." Each notification is presented as a separate entry, allowing users to easily navigate through the updates. For comment notifications, the notification includes the comment description and the name of the user who made the comment. Friend request notifications provide options to accept or decline the request, and friend notifications notify users when a friend request has been accepted. This page serves as a central hub for users to stay informed and engaged with the social aspects of the Box Buddy fitness media app.
+
+### <b>Profile Page:</b><br>
+The profile page in Box Buddy provides users with a personalized space to showcase their fitness journey and connect with others in the community. The page features the user's profile picture, name, and a brief bio. Users can view the date they joined the app, the number of friends they have, and their own individual posts. Additionally, a link to the "Personal Records" page is provided for users to track and monitor their progress.
+
+### <b>Personal Records:</b><br>
+The Personal Records page in Box Buddy allows users to track and manage their fitness achievements in weightlifting and cardio exercises. Users can view their personal records for each exercise, including the maximum weight lifted and the number of repetitions for weightlifting, as well as the distance covered and time taken for cardio exercises. The page is divided into sections for weightlifting PRs and cardio PRs, with each exercise listed along with the corresponding records. This feature helps users monitor their progress, set new goals, and stay motivated in their fitness journey.
+
+### <b>Comments:</b>
+The Comments page in Box Buddy provides a platform for users to engage with each other by posting comments and sharing their thoughts on fitness-related content. Users can view a post along with its details, including the user who posted it, the exercise performed, and any additional information such as sets, reps, weight lifted, time taken, and distance covered. Below the post, users can write their comments and add them to the discussion. The page also displays existing comments, showing the commenter's profile picture, name, and the timestamp of their comment. 
+
+<br/><br/>
+## <a id="screen">Screenshots: 📷</a>
+
+### <b>Home:</b><br>
+<img src="public/images/screenshot-home.png" alt="home" width="200px"></img>
+
+### <b>Search Friends:</b><br>
+<img src="public/images/search-screenshot.png" alt="search friends" width="200px"></img>
+
+### <b>Create New Post:</b><br>
+<img src="public/images/screenshot-newpost.png" alt="create new post" width="200px"></img>
+
+### <b>Notifications:</b><br>
+<img src="public/images/screenshot-notifications.png" alt="confirm" width="200px"></img>
+
+### <b>Profile:</b><br>
+<img src="" alt="assets" width="200px"></img>
+
+### <b>Personal Records:</b><br>
+<img src="" alt="tokens" width="200px"></img>
+
+### <b>Comments:</b><br>
+<img src="" alt="charts" width="200px"></img>
+
+<br/><br/>
+## <a id="status">Status: 📶</a>
 
 Box Buddy is in beta stage of development.<br>This was a 1 week full-stack project built by Hunter and Ethan starting week 10 and ending week 11 of DigitalCrafts Bootcamp.
 <br/><br/>
-## <a id="credits"></a>Credits: 🙌
+## <a id="credits">Credits: 🙌</a>
 
 ### Contributors: 
 <a href="">Hunter Atkins</a> & <a href="https://www.linkedin.com/in/ethan-lehman-444b68220/">Ethan Lehman</a><br>
 <img src="" alt="" height="137px"></img>
-<img src="" alt="" height="137px"></img>
+<img src="public/images/ethan-profimg.PNG" alt="" height="137px"></img>
 <br>
-### Powered by:<br> 
