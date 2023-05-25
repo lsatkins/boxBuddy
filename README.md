@@ -36,13 +36,13 @@ Hermes' swap interface allows users to select a cryptocurrency, and provides rea
 <img src="" alt="confirm" width="200px"></img>
 
 ### <b>Profile:</b><br>
-<img src="" alt="assets" width="200px"></img>
+<img src="public/images/screenshot-profile.png" alt="assets" width="200px"></img>
 
 ### <b>Personal Records:</b><br>
-<img src="" alt="tokens" width="200px"></img>
+<img src="public/images/screenshot-personalRecords.png" alt="tokens" width="200px"></img>
 
 ### <b>Comments:</b><br>
-<img src="" alt="charts" width="200px"></img>
+<img src="public/images/screenshot-comments.png" alt="charts" width="200px"></img>
 
 <br/><br/>
 ## <a id="tech"></a>Technologies: 💻
